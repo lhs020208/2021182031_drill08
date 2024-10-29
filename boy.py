@@ -79,7 +79,7 @@ class AutoRun:
 
         boy.image.clip_draw(boy.frame * 100, boy.action * 100,
                             100, 100,
-                            boy.x, boy.y,
+                            boy.x, boy.y + boy.autorun_plus_size/4,
                             100 + boy.autorun_plus_size,100 + boy.autorun_plus_size)
         pass
 
