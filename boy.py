@@ -13,6 +13,11 @@ class Idle:
         elif right_up(e) or left_down(e) or start_event(e):
             boy.action = 3
             boy.face_dir = 1
+        elif e[0] == 'TIME_OUT':
+            if boy.face_dir == 1:
+                boy.action = 3
+            elif boy.face_dir == -1:
+                boy.action = 2
 
         boy.frame = 0
         #boy.dir = 0
@@ -46,11 +51,18 @@ class AutoRun:
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
-        if get_time() - boy.start_time > 5:
+        if get_time() - boy.start_time > 1:
             boy.state_machine.add_event(('TIME_OUT',))  # 튜플 형태로 전달
 
     @staticmethod
     def draw(boy):
+        if boy.face_dir == 1:
+            boy.action = 1
+        elif boy.face_dir == -1:
+            boy.action = 0
+
+        boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100,
+                            boy.x, boy.y)
         pass
 
 class Sleep:
