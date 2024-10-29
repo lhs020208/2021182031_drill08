@@ -58,8 +58,12 @@ class AutoRun:
 
         if boy.x >= 800:
             boy.x = 800
+            boy.dir = -1
+            boy.face_dir = -1
         elif boy.x <= 0:
             boy.x = 0
+            boy.dir = 1
+            boy.face_dir = 1
 
         boy.autorun_plus_speed += 0.1
         boy.autorun_plus_size += 0.1
