@@ -7,6 +7,8 @@ from state_machine import StateMachine, space_down, time_out, right_down, left_d
 class Idle:
     @staticmethod
     def enter(boy, e):
+        if start_event(e):
+            boy.dir = 1
         if left_up(e) or right_down(e):
             boy.action = 2
             boy.face_dir = -1
@@ -20,7 +22,6 @@ class Idle:
                 boy.action = 2
 
         boy.frame = 0
-        #boy.dir = 0
         boy.start_time = get_time()
         pass
 
@@ -51,6 +52,8 @@ class AutoRun:
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
+        boy.x += boy.dir * (3 + boy.autorun_plus_speed)
+
         if get_time() - boy.start_time > 1:
             boy.state_machine.add_event(('TIME_OUT',))  # 튜플 형태로 전달
 
