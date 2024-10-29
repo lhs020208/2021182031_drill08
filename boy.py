@@ -66,7 +66,7 @@ class AutoRun:
             boy.face_dir = 1
 
         boy.autorun_plus_speed += 0.1
-        boy.autorun_plus_size += 0.1
+        boy.autorun_plus_size += 1
         if get_time() - boy.start_time > 1:
             boy.state_machine.add_event(('TIME_OUT',))  # 튜플 형태로 전달
 
@@ -77,8 +77,10 @@ class AutoRun:
         elif boy.face_dir == -1:
             boy.action = 0
 
-        boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100,
-                            boy.x, boy.y)
+        boy.image.clip_draw(boy.frame * 100, boy.action * 100,
+                            100, 100,
+                            boy.x, boy.y,
+                            100 + boy.autorun_plus_size,100 + boy.autorun_plus_size)
         pass
 
 class Sleep:
