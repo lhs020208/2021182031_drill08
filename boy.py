@@ -1,6 +1,6 @@
 from pico2d import load_image, get_time
 
-from state_machine import start_event
+from state_machine import start_event, a_down
 from state_machine import StateMachine, space_down, time_out, right_down, left_down, left_up, right_up
 
 
@@ -119,9 +119,10 @@ class Boy:
         self.state_machine.start(Idle)
         self.state_machine.set_transitions(
             {
-                Idle: {right_down: Run, left_down: Run, left_up: Run, right_up: Run, },#time_out: Sleep},
+                Idle: {right_down: Run, left_down: Run, left_up: Run, right_up: Run, a_down: AutoRun},#time_out: Sleep},
                 Run: {right_down: Idle, left_down: Idle, right_up: Idle, left_up: Idle},
-                Sleep: {right_down: Run, left_down: Run, right_up: Run, left_up: Run, space_down: Idle}
+                #Sleep: {right_down: Run, left_down: Run, right_up: Run, left_up: Run, space_down: Idle}
+                AutoRun: {right_down: Run, left_down: Run, left_up: Run, right_up: Run, time_out: Idle}
             }
         )
 
