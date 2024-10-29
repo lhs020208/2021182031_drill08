@@ -54,6 +54,7 @@ class AutoRun:
         boy.frame = (boy.frame + 1) % 8
         boy.x += boy.dir * (3 + boy.autorun_plus_speed)
 
+        boy.autorun_plus_speed += 0.1
         if get_time() - boy.start_time > 1:
             boy.state_machine.add_event(('TIME_OUT',))  # 튜플 형태로 전달
 
