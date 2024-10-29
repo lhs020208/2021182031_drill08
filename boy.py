@@ -36,6 +36,7 @@ class Idle:
 class AutoRun:
     @staticmethod
     def enter(boy, e):
+        boy.start_time = get_time()
         pass
 
     @staticmethod
@@ -44,7 +45,9 @@ class AutoRun:
 
     @staticmethod
     def do(boy):
-        pass
+        boy.frame = (boy.frame + 1) % 8
+        if get_time() - boy.start_time > 5:
+            boy.state_machine.add_event(('TIME_OUT',))  # 튜플 형태로 전달
 
     @staticmethod
     def draw(boy):
