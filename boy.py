@@ -129,6 +129,8 @@ class Boy:
         self.frame = 0
         self.dir = 0
         self.action = 3
+        self.autorun_plus_size = 0 #오토런때 추가할 사이즈
+        self.autorun_plus_speed = 0 #오토런때 증가할 스피드
         self.image = load_image('animation_sheet.png')
         self.state_machine = StateMachine(self)
         self.state_machine.start(Idle)
