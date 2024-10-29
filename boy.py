@@ -56,6 +56,11 @@ class AutoRun:
         boy.frame = (boy.frame + 1) % 8
         boy.x += boy.dir * (3 + boy.autorun_plus_speed)
 
+        if boy.x >= 800:
+            boy.x = 800
+        elif boy.x <= 0:
+            boy.x = 0
+
         boy.autorun_plus_speed += 0.1
         boy.autorun_plus_size += 0.1
         if get_time() - boy.start_time > 1:
