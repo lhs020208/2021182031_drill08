@@ -43,6 +43,8 @@ class AutoRun:
     @staticmethod
     def enter(boy, e):
         boy.start_time = get_time()
+        boy.autorun_plus_speed = 0
+        boy.autorun_plus_size = 0
         pass
 
     @staticmethod
@@ -55,6 +57,7 @@ class AutoRun:
         boy.x += boy.dir * (3 + boy.autorun_plus_speed)
 
         boy.autorun_plus_speed += 0.1
+        boy.autorun_plus_size += 0.1
         if get_time() - boy.start_time > 1:
             boy.state_machine.add_event(('TIME_OUT',))  # 튜플 형태로 전달
 
